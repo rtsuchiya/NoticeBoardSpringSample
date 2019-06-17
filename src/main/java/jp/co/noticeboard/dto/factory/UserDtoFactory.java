@@ -10,6 +10,7 @@ import jp.co.noticeboard.dto.UserManagementDto;
 import jp.co.noticeboard.entity.User;
 import jp.co.noticeboard.entity.UserManagement;
 import jp.co.noticeboard.form.ChangeStatusForm;
+import jp.co.noticeboard.form.EditForm;
 import jp.co.noticeboard.form.SignupForm;
 
 @Component
@@ -22,11 +23,24 @@ public class UserDtoFactory {
 				form.getLoginId(),
 				form.getPassword(),
 				form.getAccountName(),
-				Integer.parseInt(form.getBranchId()),
-				Integer.parseInt(form.getPositionId()),
+				form.getBranchId(),
+				form.getPositionId(),
 				1);
 	}
 
+	/** create dto from fom */
+	public UserDto create(EditForm form) {
+		return new UserDto(
+				form.getId(),
+				form.getLoginId(),
+				form.getPassword(),
+				form.getAccountName(),
+				form.getBranchId(),
+				form.getPositionId(),
+				null);
+	}
+
+	/** create dto from fom */
 	public UserDto create(ChangeStatusForm form) {
 		return new UserDto(
 				form.getId(),

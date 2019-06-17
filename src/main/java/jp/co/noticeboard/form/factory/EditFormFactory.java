@@ -14,8 +14,8 @@ public class EditFormFactory {
 		form.setId(dto.getId());
 		form.setLoginId(dto.getLoginId());
 		form.setAccountName(dto.getName());
-		form.setBranchId(dto.getBranchId().toString());
-		form.setPositionId(dto.getPositionId().toString());
+		form.setBranchId(dto.getBranchId());
+		form.setPositionId(dto.getPositionId());
 		return form;
 	}
 }

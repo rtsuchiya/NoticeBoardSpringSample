@@ -11,8 +11,8 @@ public class SignupForm {
 	private String confirmPassword;
 	@Pattern(regexp = ".{1,10}")
 	private String accountName;
-	private String branchId;
-	private String positionId;
+	private Integer branchId;
+	private Integer positionId;
 
 	public String getLoginId() {
 		return loginId;
@@ -46,19 +46,19 @@ public class SignupForm {
 		this.accountName = accountName;
 	}
 
-	public String getBranchId() {
+	public Integer getBranchId() {
 		return branchId;
 	}
 
-	public void setBranchId(String branchId) {
+	public void setBranchId(Integer branchId) {
 		this.branchId = branchId;
 	}
 
-	public String getPositionId() {
+	public Integer getPositionId() {
 		return positionId;
 	}
 
-	public void setPositionId(String positionId) {
+	public void setPositionId(Integer positionId) {
 		this.positionId = positionId;
 	}
 }
