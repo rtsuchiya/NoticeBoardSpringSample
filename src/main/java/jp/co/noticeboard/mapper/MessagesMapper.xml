@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.noticeboard.mapper.MessagesMapper">
+	<select id="getAll" resultType="jp.co.noticeboard.entity.Message">
+		select
+			id,
+			user_id as userId,
+			subject,
+			text,
+			category,
+			created_at as createdAt,
+			updated_at as updatedAt
+		from
+			messages
+	</select>
+	<insert id="regist">
+		insert into messages (
+			user_id,
+			subject,
+			text,
+			category,
+			created_at,
+			updated_at
+		) values (
+			#{userId},
+			#{subject},
+			#{text},
+			#{category},
+			current_timestamp,
+			current_timestamp
+		)
+	</insert>
+</mapper>

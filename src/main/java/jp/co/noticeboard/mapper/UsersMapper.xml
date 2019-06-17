@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.noticeboard.mapper.UsersMapper">
+	<select id="getUser" resultType="jp.co.noticeboard.entity.User">
+		select
+			id,
+			login_id as loginId,
+			name,
+			branch_id as branchId,
+			position_id as positionId,
+			is_working as isWorking,
+			created_at as createdAt,
+			updated_at as updatedAt
+		from
+			users
+		where
+			login_id = #{loginId} AND
+			password = #{password}
+	</select>
+	<select id="getUserById"
+		resultType="jp.co.noticeboard.entity.User">
+		select
+			id,
+			login_id as loginId,
+			name,
+			branch_id as branchId,
+			position_id as positionId,
+			is_working as isWorking,
+			created_at as createdAt,
+			updated_at as updatedAt
+		from
+			users
+		where
+			id = #{id}
+	</select>
+	<select id="getAllForManagement"
+		resultType="jp.co.noticeboard.entity.UserManagement">
+		select
+			users.id,
+			users.login_id as loginId,
+			users.name,
+			users.branch_id as branchId,
+			branches.name as branchName,
+			users.position_id as positionId,
+			positions.name as positionName,
+			users.is_working as isWorking
+		from
+			users
+		inner join
+			branches
+		on users.branch_id = branches.id
+		inner join
+			positions
+		on users.position_id = positions.id
+	</select>
+	<insert id="regist">
+		insert into users (
+			login_id,
+			password,
+			name,
+			branch_id,
+			position_id,
+			is_working,
+			created_at,
+			updated_at
+		) values (
+			#{loginId},
+			#{password},
+			#{name},
+			#{branchId},
+			#{positionId},
+			#{isWorking},
+			current_timestamp,
+			current_timestamp
+		)
+	</insert>
+	<update id="update">
+		update users
+		set
+			login_id = #{loginId},
+			<if test="password != null">
+			password = #{password},
+			</if>
+			name = #{name},
+			branch_id = #{branchId},
+			position_id = #{positionId}
+		where
+			id = #{id}
+	</update>
+	<update id="updateIsWorking">
+		update users
+		set
+			is_working = #{isWorking}
+		where
+			id = #{id}
+	</update>
+</mapper>
