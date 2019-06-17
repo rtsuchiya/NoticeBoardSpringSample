@@ -10,6 +10,8 @@
 </head>
 <body>
 	<a href="./top">ホーム</a>
+	<a href="./signup">ユーザー新規登録</a>
+	<a href="./logout">ログアウト</a>
 	<table>
 		<tr>
 			<th>編集</th>

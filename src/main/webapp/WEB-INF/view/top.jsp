@@ -11,8 +11,9 @@
 </head>
 <body>
 	<a href="./post">新規投稿</a>
-	<a href="./signup">ユーザー新規登録</a>
-	<a href="./management">ユーザー一覧</a>
+	<c:if test="${loginUser.positionId == 1}">
+		<a href="./management">ユーザー一覧</a>
+	</c:if>
 	<a href="./logout">ログアウト</a>
 	<br />
 
