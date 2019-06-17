@@ -13,6 +13,7 @@
 	<a href="./post">新規投稿</a>
 	<a href="./signup">ユーザー新規登録</a>
 	<a href="./management">ユーザー一覧</a>
+	<a href="./logout">ログアウト</a>
 	<br />
 
 	<c:forEach items="${messageList}" var="message">
