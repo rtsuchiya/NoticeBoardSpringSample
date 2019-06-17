@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.noticeboard.dto.BranchDto;
 import jp.co.noticeboard.dto.PositionDto;
 import jp.co.noticeboard.dto.UserDto;
+import jp.co.noticeboard.dto.factory.UserDtoFactory;
 import jp.co.noticeboard.form.EditForm;
 import jp.co.noticeboard.form.ManagementForm;
 import jp.co.noticeboard.form.factory.EditFormFactory;
@@ -26,6 +27,8 @@ public class EditController {
 	private EditService editService;
 	@Autowired
 	private EditFormFactory editFormFactory;
+	@Autowired
+	private UserDtoFactory userDtoFactory;
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(@ModelAttribute ManagementForm managementForm, Model model) {
@@ -38,10 +41,13 @@ public class EditController {
 		return "/edit";
 	}
 
-	@RequestMapping(value="/edit", method=RequestMethod.POST)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute @Valid EditForm editForm, BindingResult result, Model model) {
-
-		// PK重複エラー
+		if (result.hasErrors()) {
+			return "/edit";
+		}
+		// TODO PK重複エラー
+		editService.update(userDtoFactory.create(editForm));
 
 		return "redirect:management";
 	}

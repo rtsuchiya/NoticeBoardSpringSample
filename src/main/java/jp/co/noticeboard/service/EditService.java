@@ -38,7 +38,7 @@ public class EditService {
 	}
 
 	public void update(UserDto dto) {
-		usersMapper.update(userFactory.create(dto));
+		usersMapper.update(userFactory.createEncrypt(dto));
 	}
 
 	public List<BranchDto> getBranchList() {
