@@ -2,9 +2,11 @@ package jp.co.noticeboard.form;
 
 import javax.validation.constraints.Pattern;
 
+import jp.co.noticeboard.form.validator.BranchPositionCombination;
 import jp.co.noticeboard.form.validator.ConfirmPassword;
 
 @ConfirmPassword(password = "password", confirmPassword = "confirmPassword")
+@BranchPositionCombination(branchId = "branchId", positionId = "positionId")
 public class SignupForm {
 	@Pattern(regexp = "[a-zA-Z0-9]{6,20}")
 	private String loginId;

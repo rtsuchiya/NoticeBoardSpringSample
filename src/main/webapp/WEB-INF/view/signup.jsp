@@ -25,6 +25,7 @@
 		<form:select path="branchId">
 			<form:options items="${branchList}" itemLabel="name" itemValue="id" />
 		</form:select>
+		<form:errors path="branchId" />
 		<br />
 		役職
 		<form:select path="positionId">
