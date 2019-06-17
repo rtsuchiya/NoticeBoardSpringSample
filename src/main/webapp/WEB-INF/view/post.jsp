@@ -10,10 +10,13 @@
 <body>
 	<form:form modelAttribute="postForm">
 		件名<form:input path="subject" />
+		<form:errors path="subject" />
 		<br />
 		本文<form:textarea path="text" />
+		<form:errors path="text" />
 		<br />
 		カテゴリ<form:input path="category" />
+		<form:errors path="category" />
 		<br />
 		<input type="submit" value="投稿する" />
 	</form:form>
