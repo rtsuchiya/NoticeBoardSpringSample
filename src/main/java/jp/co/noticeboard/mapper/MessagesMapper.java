@@ -13,4 +13,5 @@ public interface MessagesMapper {
 
 	void regist(Message message);
 
+	void delete(Integer id);
 }

@@ -33,4 +33,9 @@
 			current_timestamp
 		)
 	</insert>
+	<delete id="delete">
+		delete from messages
+		where
+			id = #{id}
+	</delete>
 </mapper>

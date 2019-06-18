@@ -13,4 +13,5 @@ public interface CommentsMapper {
 
 	void regist(Comment comment);
 
+	void delete(Integer id);
 }
