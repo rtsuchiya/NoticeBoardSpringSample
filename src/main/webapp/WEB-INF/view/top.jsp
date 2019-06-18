@@ -28,6 +28,15 @@
 			pattern="yyyy年MM月dd日 HH:mm:ss" />
 		<br />
 
+		<c:forEach items="${commentList}" var="comment">
+			<c:if test="${message.id == comment.messageId}">
+		コメント<c:out value="${comment.text}" />
+		投稿日時<fmt:formatDate value="${comment.createdAt}"
+					pattern="yyyy年MM月dd日 HH:mm:ss" />
+				<br />
+			</c:if>
+		</c:forEach>
+
 		<form:form modelAttribute="commentForm" action="comment">
 			<form:hidden path="messageId" value="${message.id}" />
 			<form:input path="text" />

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.noticeboard.dto.CommentDto;
 import jp.co.noticeboard.dto.MessageDto;
 import jp.co.noticeboard.form.CommentForm;
 import jp.co.noticeboard.service.TopService;
@@ -26,7 +27,12 @@ public class TopController {
 
 	@ModelAttribute("messageList")
 	public List<MessageDto> getMessageList() {
-		return topService.getAll();
+		return topService.getMessageList();
+	}
+
+	@ModelAttribute("commentList")
+	public List<CommentDto> getCommentList() {
+		return	topService.getCommentList();
 	}
 
 }

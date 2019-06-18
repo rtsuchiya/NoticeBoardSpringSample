@@ -14,6 +14,7 @@
 			updated_at as updatedAt
 		from
 			messages
+		order by created_at desc
 	</select>
 	<insert id="regist">
 		insert into messages (
