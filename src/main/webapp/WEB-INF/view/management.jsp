@@ -32,19 +32,20 @@
 				<td><c:out value="${user.name}" /></td>
 				<td><c:out value="${user.branchName}" /></td>
 				<td><c:out value="${user.positionName}" /></td>
-				<td><form:form modelAttribute="changeStatusForm"
-						action="changeStatus">
-						<c:if test="${user.isWorking == 1}">
-							<form:hidden path="id" value="${user.id}" />
-							<form:hidden path="isWorking" value="0" />
-							<input type="submit" value="停止" />
-						</c:if>
-						<c:if test="${user.isWorking == 0}">
-							<form:hidden path="id" value="${user.id}" />
-							<form:hidden path="isWorking" value="1" />
-							<input type="submit" value="復活" />
-						</c:if>
-					</form:form></td>
+				<td><c:if test="${loginUser.id != user.id}">
+						<form:form modelAttribute="changeStatusForm" action="changeStatus">
+							<c:if test="${user.isWorking == 1}">
+								<form:hidden path="id" value="${user.id}" />
+								<form:hidden path="isWorking" value="0" />
+								<input type="submit" value="停止" />
+							</c:if>
+							<c:if test="${user.isWorking == 0}">
+								<form:hidden path="id" value="${user.id}" />
+								<form:hidden path="isWorking" value="1" />
+								<input type="submit" value="復活" />
+							</c:if>
+						</form:form>
+					</c:if></td>
 			</tr>
 		</c:forEach>
 	</table>
