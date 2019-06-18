@@ -27,10 +27,12 @@
 		投稿日時<fmt:formatDate value="${message.createdAt}"
 			pattern="yyyy年MM月dd日 HH:mm:ss" />
 		<br />
-		<form:form modelAttribute="deleteMessageForm" action="deleteMessage">
-			<form:hidden path="id" value="${message.id}" />
-			<input type="submit" value="削除する" />
-		</form:form>
+		<c:if test="${loginUser.id == message.userId}">
+			<form:form modelAttribute="deleteMessageForm" action="deleteMessage">
+				<form:hidden path="id" value="${message.id}" />
+				<input type="submit" value="削除する" />
+			</form:form>
+		</c:if>
 
 		<c:forEach items="${commentList}" var="comment">
 			<c:if test="${message.id == comment.messageId}">
@@ -38,10 +40,13 @@
 		投稿日時<fmt:formatDate value="${comment.createdAt}"
 					pattern="yyyy年MM月dd日 HH:mm:ss" />
 				<br />
-				<form:form modelAttribute="deleteCommentForm" action="deleteComment">
-					<form:hidden path="id" value="${comment.id}" />
-					<input type="submit" value="削除する" />
-				</form:form>
+				<c:if test="${loginUser.id == comment.userId}">
+					<form:form modelAttribute="deleteCommentForm"
+						action="deleteComment">
+						<form:hidden path="id" value="${comment.id}" />
+						<input type="submit" value="削除する" />
+					</form:form>
+				</c:if>
 			</c:if>
 		</c:forEach>
 
