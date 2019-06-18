@@ -13,7 +13,6 @@ public class EditForm {
 	private String loginId;
 	@Pattern(regexp = ".{6,20}")
 	private String password;
-	@Pattern(regexp = ".{6,20}")
 	private String confirmPassword;
 	@Pattern(regexp = ".{1,10}")
 	private String accountName;
