@@ -1,6 +1,9 @@
 package jp.co.noticeboard.form;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class CommentForm {
+	@NotBlank
 	private String text;
 	private Integer messageId;
 
