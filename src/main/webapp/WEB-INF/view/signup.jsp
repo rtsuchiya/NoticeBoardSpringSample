@@ -34,6 +34,6 @@
 		<br />
 		<input value="登録する" type="submit" />
 	</form:form>
-	<a href="./top">ホームへ戻る</a>
+	<a href="./management">ユーザー一覧へ戻る</a>
 </body>
 </html>
