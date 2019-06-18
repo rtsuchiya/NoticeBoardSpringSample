@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.noticeboard.dto.MessageDto;
+import jp.co.noticeboard.form.CommentForm;
 import jp.co.noticeboard.service.TopService;
 
 @Controller
@@ -17,7 +19,8 @@ public class TopController {
 	private TopService topService;
 
 	@RequestMapping(value = "/top", method = RequestMethod.GET)
-	public String top() {
+	public String top(Model model) {
+		model.addAttribute("commentForm", new CommentForm());
 		return "/top";
 	}
 

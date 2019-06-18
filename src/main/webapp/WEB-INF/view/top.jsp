@@ -27,6 +27,12 @@
 		投稿日時<fmt:formatDate value="${message.createdAt}"
 			pattern="yyyy年MM月dd日 HH:mm:ss" />
 		<br />
+
+		<form:form modelAttribute="commentForm">
+			<form:hidden path="messageId" value="${message.id}" />
+			<form:input path="text" />
+			<input type="submit" value="コメントする" />
+		</form:form>
 	</c:forEach>
 </body>
 </html>
