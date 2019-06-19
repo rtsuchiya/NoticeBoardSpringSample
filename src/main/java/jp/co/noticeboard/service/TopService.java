@@ -40,7 +40,7 @@ public class TopService {
 			startDate += " 00:00:00";
 		}
 		if (StringUtils.isEmpty(endDate)) {
-			endDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+			endDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		} else {
 			endDate += " 23:59:59";
 		}
