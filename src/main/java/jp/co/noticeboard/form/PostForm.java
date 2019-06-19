@@ -1,13 +1,17 @@
 package jp.co.noticeboard.form;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class PostForm {
-	@NotEmpty
+	@NotBlank
+	@Length(max = 30)
 	private String subject;
-	@NotEmpty
+	@NotBlank
+	@Length(max = 1000)
 	private String text;
-	@NotEmpty
+	@NotBlank
+	@Length(max = 10)
 	private String category;
 
 	public String getSubject() {
