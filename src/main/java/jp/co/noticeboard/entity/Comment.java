@@ -1,6 +1,6 @@
 package jp.co.noticeboard.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Comment {
 	private Integer id;

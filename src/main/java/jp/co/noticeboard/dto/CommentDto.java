@@ -1,6 +1,6 @@
 package jp.co.noticeboard.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class CommentDto {
 	private Integer id;
