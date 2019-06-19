@@ -8,6 +8,8 @@
 <head>
 <meta charset="utf-8">
 <title>トップ画面</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
 </head>
 <body>
 	<a href="./post">新規投稿</a>
