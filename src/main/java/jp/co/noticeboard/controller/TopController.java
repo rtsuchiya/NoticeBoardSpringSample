@@ -14,6 +14,7 @@ import jp.co.noticeboard.dto.MessageDto;
 import jp.co.noticeboard.form.CommentForm;
 import jp.co.noticeboard.form.DeleteCommentForm;
 import jp.co.noticeboard.form.DeleteMessageForm;
+import jp.co.noticeboard.form.SearchForm;
 import jp.co.noticeboard.service.TopService;
 
 @Controller
@@ -22,16 +23,17 @@ public class TopController {
 	private TopService topService;
 
 	@RequestMapping(value = "/top", method = RequestMethod.GET)
-	public String top(Model model) {
+	public String top(@ModelAttribute SearchForm searchForm, Model model) {
 		model.addAttribute("commentForm", new CommentForm());
+		model.addAttribute("searchForm", searchForm);
 		model.addAttribute("deleteMessageForm", new DeleteMessageForm());
 		model.addAttribute("deleteCommentForm", new DeleteCommentForm());
 		return "/top";
 	}
 
 	@ModelAttribute("messageList")
-	public List<MessageDto> getMessageList() {
-		return topService.getMessageList();
+	public List<MessageDto> getMessageList(@ModelAttribute SearchForm searchForm) {
+		return topService.getMessageList(searchForm.getCategory(), searchForm.getStartDate(), searchForm.getEndDate());
 	}
 
 	@ModelAttribute("commentList")

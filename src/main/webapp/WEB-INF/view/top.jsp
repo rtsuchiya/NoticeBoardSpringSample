@@ -17,6 +17,13 @@
 	<a href="./logout">ログアウト</a>
 	<br />
 
+	<form:form modelAttribute="searchForm" method="get">
+		<form:input path="category" /><br />
+		<input type="date" name="startDate" value="${searchForm.startDate}" />～
+		<input type="date" name="endDate" value="${searchForm.endDate}" />
+		<input type="submit" value="検索する" />
+	</form:form>
+
 	<c:forEach items="${messageList}" var="message">
 		件名<c:out value="${message.subject}" />
 		<br />

@@ -14,6 +14,9 @@
 			updated_at as updatedAt
 		from
 			messages
+		where
+			category like concat('%', #{category} ,'%') and
+			created_at between #{startDate} and #{endDate}
 		order by created_at desc
 	</select>
 	<insert id="regist">
