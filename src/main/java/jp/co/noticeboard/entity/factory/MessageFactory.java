@@ -13,6 +13,7 @@ public class MessageFactory {
 		return new Message(
 				null,
 				dto.getUserId(),
+				null,
 				dto.getSubject(),
 				dto.getText(),
 				dto.getCategory(),

@@ -34,6 +34,8 @@
 		<br />
 		カテゴリ<c:out value="${message.category}" />
 		<br />
+		投稿者<c:out value="${message.userName}" />
+		<br />
 		投稿日時<fmt:formatDate value="${message.createdAt}"
 			pattern="yyyy年MM月dd日 HH:mm:ss" />
 		<br />

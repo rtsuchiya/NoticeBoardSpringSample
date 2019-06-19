@@ -5,17 +5,18 @@ import java.util.Date;
 public class MessageDto {
 	private Integer id;
 	private Integer userId;
+	private String userName;
 	private String subject;
 	private String text;
 	private String category;
 	private Date createdAt;
 	private Date updatedAt;
 
-	public MessageDto(Integer id, Integer userId, String subject, String text, String category, Date createdAt,
-			Date updatedAt) {
-		super();
+	public MessageDto(Integer id, Integer userId, String userName, String subject, String text, String category,
+			Date createdAt, Date updatedAt) {
 		this.id = id;
 		this.userId = userId;
+		this.userName = userName;
 		this.subject = subject;
 		this.text = text;
 		this.category = category;
@@ -37,6 +38,14 @@ public class MessageDto {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getSubject() {

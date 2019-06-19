@@ -17,6 +17,7 @@ public class MessageDtoFactory {
 		return new MessageDto(
 				null,
 				userId,
+				null,
 				form.getSubject(),
 				form.getText(),
 				form.getCategory(),
@@ -38,6 +39,7 @@ public class MessageDtoFactory {
 		return new MessageDto(
 				entity.getId(),
 				entity.getUserId(),
+				entity.getUserName(),
 				entity.getSubject(),
 				entity.getText(),
 				entity.getCategory(),
