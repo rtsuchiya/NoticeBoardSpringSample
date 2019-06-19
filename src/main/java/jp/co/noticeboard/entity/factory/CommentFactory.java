@@ -12,6 +12,7 @@ public class CommentFactory {
 		return new Comment(
 				null,
 				dto.getUserId(),
+				null,
 				dto.getMessageId(),
 				dto.getText(),
 				null,

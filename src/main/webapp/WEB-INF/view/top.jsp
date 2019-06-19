@@ -48,9 +48,11 @@
 
 		<c:forEach items="${commentList}" var="comment">
 			<c:if test="${message.id == comment.messageId}">
-		コメント
+				コメント
 <pre><c:out value="${comment.text}" /></pre>
-		投稿日時<fmt:formatDate value="${comment.createdAt}"
+				投稿者<c:out value="${comment.userName}" />
+				<br />
+				投稿日時<fmt:formatDate value="${comment.createdAt}"
 					pattern="yyyy年MM月dd日 HH:mm:ss" />
 				<br />
 				<c:if test="${loginUser.id == comment.userId}">

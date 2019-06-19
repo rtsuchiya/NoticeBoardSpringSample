@@ -17,6 +17,7 @@ public class CommentDtoFactory {
 		return new CommentDto(
 				null,
 				userId,
+				null,
 				form.getMessageId(),
 				form.getText(),
 				null);
@@ -36,6 +37,7 @@ public class CommentDtoFactory {
 		return new CommentDto(
 				entity.getId(),
 				entity.getUserId(),
+				entity.getUserName(),
 				entity.getMessageId(),
 				entity.getText(),
 				entity.getCreatedAt());

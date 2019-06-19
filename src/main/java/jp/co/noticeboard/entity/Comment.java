@@ -5,6 +5,7 @@ import java.util.Date;
 public class Comment {
 	private Integer id;
 	private Integer userId;
+	private String userName;
 	private Integer messageId;
 	private String text;
 	private Date createdAt;
@@ -13,9 +14,11 @@ public class Comment {
 	public Comment() {
 	}
 
-	public Comment(Integer id, Integer userId, Integer messageId, String text, Date createdAt, Date updatedAt) {
+	public Comment(Integer id, Integer userId, String userName, Integer messageId, String text, Date createdAt,
+			Date updatedAt) {
 		this.id = id;
 		this.userId = userId;
+		this.userName = userName;
 		this.messageId = messageId;
 		this.text = text;
 		this.createdAt = createdAt;
@@ -36,6 +39,14 @@ public class Comment {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public Integer getMessageId() {

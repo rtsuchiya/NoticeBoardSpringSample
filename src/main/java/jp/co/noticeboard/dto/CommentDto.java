@@ -5,13 +5,15 @@ import java.util.Date;
 public class CommentDto {
 	private Integer id;
 	private Integer userId;
+	private String userName;
 	private Integer messageId;
 	private String text;
 	private Date createdAt;
 
-	public CommentDto(Integer id, Integer userId, Integer messageId, String text, Date createdAt) {
+	public CommentDto(Integer id, Integer userId, String userName, Integer messageId, String text, Date createdAt) {
 		this.id = id;
 		this.userId = userId;
+		this.userName = userName;
 		this.messageId = messageId;
 		this.text = text;
 		this.createdAt = createdAt;
@@ -31,6 +33,14 @@ public class CommentDto {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public Integer getMessageId() {

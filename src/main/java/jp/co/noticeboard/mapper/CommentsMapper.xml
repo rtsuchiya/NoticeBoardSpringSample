@@ -5,15 +5,19 @@
 <mapper namespace="jp.co.noticeboard.mapper.CommentsMapper">
 	<select id="getAll" resultType="jp.co.noticeboard.entity.Comment">
 		select
-			id,
-			user_id as userId,
-			message_id as messageId,
-			text,
-			created_at as createdAt,
-			updated_at as updatedAt
+			comments.id,
+			comments.user_id as userId,
+			users.name as userName,
+			comments.message_id as messageId,
+			comments.text,
+			comments.created_at as createdAt,
+			comments.updated_at as updatedAt
 		from
 			comments
-		order by created_at
+		inner join
+			users
+		on comments.user_id = users.id
+		order by comments.created_at
 	</select>
 	<insert id="regist">
 		insert into comments (
