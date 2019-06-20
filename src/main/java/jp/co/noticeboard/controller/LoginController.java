@@ -36,7 +36,7 @@ public class LoginController {
 		}
 
 		UserDto user = loginService.getUser(loginForm.getLoginId(), loginForm.getPassword());
-		if (user == null) {
+		if (user == null || user.getIsWorking() != 1) {
 			// TODO エラーメッセージ
 			return "/login";
 		}
