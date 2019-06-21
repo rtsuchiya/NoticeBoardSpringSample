@@ -32,23 +32,33 @@
 			<a href="./logout" class="item">ログアウト</a> <br />
 		</div>
 	</div>
-	<div class="ui main text container">
+	<div class="ui main container">
 		<h2 class="ui header">ユーザー一覧画面</h2>
-		<table class="ui celled striped table">
-			<tr>
-				<th>編集</th>
-				<th>ログインID</th>
-				<th>アカウント名</th>
-				<th>支店名</th>
-				<th>役職名</th>
-				<th>停止/復活</th>
-			</tr>
-			<c:forEach items="${userList}" var="user">
+		<table class="ui compact fixed table">
+			<thead>
 				<tr>
+					<th class="one wide">編集</th>
+					<th class="three wide">ログインID</th>
+					<th class="three wide">アカウント名</th>
+					<th class="one wide">支店名</th>
+					<th class="three wide">役職名</th>
+					<th class="one wide">停止/復活</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${userList}" var="user">
+					<c:if test="${user.isWorking == 1}">
+						<tr>
+					</c:if>
+					<c:if test="${user.isWorking == 0}">
+						<tr class="negative">
+					</c:if>
 					<td><form:form modelAttribute="managementForm" action="edit"
 							method="get">
 							<form:hidden path="id" value="${user.id}" />
-							<input type="submit" value="編集" />
+							<button type="submit" class="circular ui icon button">
+								<i class="setting icon"></i>
+							</button>
 						</form:form></td>
 					<td><c:out value="${user.loginId}" /></td>
 					<td><c:out value="${user.name}" /></td>
@@ -60,19 +70,24 @@
 								<c:if test="${user.isWorking == 1}">
 									<form:hidden path="id" value="${user.id}" />
 									<form:hidden path="isWorking" value="0" />
-									<input type="submit" value="停止"
-										onClick="return showMessage('停止')" />
+									<button type="submit" class="circular ui blue icon button"
+										onClick="return showMessage('停止')">
+										<i class="stop icon"></i>
+									</button>
 								</c:if>
 								<c:if test="${user.isWorking == 0}">
 									<form:hidden path="id" value="${user.id}" />
 									<form:hidden path="isWorking" value="1" />
-									<input type="submit" value="復活"
-										onClick="return showMessage('復活')" />
+									<button type="submit" class="circular ui red icon button"
+										onClick="return showMessage('復活')">
+										<i class="forward icon"></i>
+									</button>
 								</c:if>
 							</form:form>
 						</c:if></td>
-				</tr>
-			</c:forEach>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 </body>

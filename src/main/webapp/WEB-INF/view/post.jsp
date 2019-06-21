@@ -32,19 +32,20 @@
 				<form:errors path="*" />
 				<div class="eleven wide field">
 					<form:label path="subject">件名</form:label>
-					<form:input path="subject" placeholder="subject" />
+					<form:input path="subject" />
 				</div>
 				<div class="field">
 					<form:label path="text">本文</form:label>
-					<form:textarea path="text" placeholder="text" />
+					<form:textarea path="text" />
 				</div>
 				<div class="five wide field">
 					<form:label path="category">カテゴリ</form:label>
-					<form:input path="category" placeholder="category" />
+					<form:input path="category" />
 				</div>
 				<button type="submit" class="ui primary labeled icon button">
-					<i class="envelope icon"></i> 投稿
+					<i class="comment icon"></i> 投稿
 				</button>
+				<a href="./top" class="ui button">キャンセル</a>
 			</form:form>
 		</div>
 	</div>

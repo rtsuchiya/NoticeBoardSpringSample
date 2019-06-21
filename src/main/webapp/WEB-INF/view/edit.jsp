@@ -77,6 +77,7 @@
 					class="ui primary labeled icon button">
 					<i class="user plus icon"></i>編集
 				</button>
+				<a href="./management" class="ui button">キャンセル</a>
 			</form:form>
 		</div>
 	</div>

@@ -66,6 +66,7 @@
 				<button type="submit" class="ui primary labeled icon button">
 					<i class="user plus icon"></i> 登録
 				</button>
+				<a href="./management" class="ui button">キャンセル</a>
 			</form:form>
 		</div>
 	</div>
