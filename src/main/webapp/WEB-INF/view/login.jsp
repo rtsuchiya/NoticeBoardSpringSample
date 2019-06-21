@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
 <style>
 .main.container {
@@ -29,18 +31,18 @@
 				<div class="ui error message">
 					<form:errors path="*" />
 				</div>
-				<div class="field">
+				<div class="seven wide field">
 					<form:label path="loginId">ログインID</form:label>
 					<div class="ui left icon input">
 						<i class="user icon"></i>
-						<form:input path="loginId" placeholder="ID" />
+						<form:input path="loginId" />
 					</div>
 				</div>
-				<div class="field">
+				<div class="seven wide field">
 					<form:label path="password">パスワード</form:label>
 					<div class="ui left icon input">
 						<i class="key icon"></i>
-						<form:password path="password" placeholder="PASSWORD" />
+						<form:password path="password" />
 					</div>
 				</div>
 				<button type="submit" class="ui primary labeled icon button">

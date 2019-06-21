@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
 <style>
 .main.container {
@@ -29,36 +31,38 @@
 		<div class="ui segment">
 			<form:form modelAttribute="signupForm" class="ui form">
 				<form:errors path="*" />
-				<div class="field">
+				<div class="seven wide field">
 					<form:label path="loginId">ログインID</form:label>
 					<form:input path="loginId" />
 				</div>
-				<div class="field">
+				<div class="seven wide field">
 					<form:label path="password">パスワード</form:label>
 					<form:password path="password" />
 				</div>
-				<div class="field">
+				<div class="seven wide field">
 					<form:label path="confirmPassword">パスワード(確認)</form:label>
 					<form:password path="confirmPassword" />
 				</div>
-				<div class="field">
+				<div class="five wide field">
 					<form:label path="accountName">アカウント名</form:label>
 					<form:input path="accountName" />
 				</div>
-				<div class="field">
+
+				<div class="three wide field">
 					<form:label path="branchId">支店</form:label>
 					<form:select path="branchId">
 						<form:options items="${branchList}" itemLabel="name"
 							itemValue="id" />
 					</form:select>
 				</div>
-				<div class="field">
+				<div class="five wide field">
 					<form:label path="positionId">役職</form:label>
 					<form:select path="positionId">
 						<form:options items="${positionList}" itemLabel="name"
 							itemValue="id" />
 					</form:select>
 				</div>
+
 				<button type="submit" class="ui primary labeled icon button">
 					<i class="user plus icon"></i> 登録
 				</button>

@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
 <style>
 .main.container {
@@ -28,7 +30,7 @@
 		<div class="ui segment">
 			<form:form modelAttribute="postForm" class="ui form">
 				<form:errors path="*" />
-				<div class="field">
+				<div class="eleven wide field">
 					<form:label path="subject">件名</form:label>
 					<form:input path="subject" placeholder="subject" />
 				</div>
@@ -36,7 +38,7 @@
 					<form:label path="text">本文</form:label>
 					<form:textarea path="text" placeholder="text" />
 				</div>
-				<div class="field">
+				<div class="five wide field">
 					<form:label path="category">カテゴリ</form:label>
 					<form:input path="category" placeholder="category" />
 				</div>
