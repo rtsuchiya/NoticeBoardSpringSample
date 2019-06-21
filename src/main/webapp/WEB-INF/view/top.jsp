@@ -53,56 +53,57 @@
 					<input type="submit" value="検索する" />
 				</div>
 			</form:form>
+		</div>
 
-			<c:forEach items="${messageList}" var="message">
+		<c:forEach items="${messageList}" var="message">
 		件名<c:out value="${message.subject}" />
-				<br />
+			<br />
 		本文
 <pre><c:out value="${message.text}" /></pre>
-				<br />
+			<br />
 		カテゴリ<c:out value="${message.category}" />
-				<br />
+			<br />
 		投稿者<c:out value="${message.userName}" />
-				<br />
+			<br />
 		投稿日時<fmt:formatDate value="${message.createdAt}"
-					pattern="yyyy年MM月dd日 HH時mm分ss秒" />
-				<br />
-				<c:if test="${loginUser.id == message.userId}">
-					<form:form modelAttribute="deleteMessageForm"
-						action="deleteMessage">
-						<form:hidden path="id" value="${message.id}" />
-						<input type="submit" value="削除する" onClick="return showMessage('削除');" />
-					</form:form>
-				</c:if>
+				pattern="yyyy年MM月dd日 HH時mm分ss秒" />
+			<br />
+			<c:if test="${loginUser.id == message.userId}">
+				<form:form modelAttribute="deleteMessageForm" action="deleteMessage">
+					<form:hidden path="id" value="${message.id}" />
+					<input type="submit" value="削除する"
+						onClick="return showMessage('削除');" />
+				</form:form>
+			</c:if>
 
-				<c:forEach items="${commentList}" var="comment">
-					<c:if test="${message.id == comment.messageId}">
-				コメント
+			<c:forEach items="${commentList}" var="comment">
+				<c:if test="${message.id == comment.messageId}">
 				<div class="ui message">
+					コメント
 <pre><c:out value="${comment.text}" /></pre>
-							投稿者
-							<c:out value="${comment.userName}" />
-							<br /> 投稿日時
-							<fmt:formatDate value="${comment.createdAt}"
-								pattern="yyyy年MM月dd日 HH時mm分ss秒" />
-						</div>
+						投稿者
+						<c:out value="${comment.userName}" />
+						<br /> 投稿日時
+						<fmt:formatDate value="${comment.createdAt}"
+							pattern="yyyy年MM月dd日 HH時mm分ss秒" />
 						<c:if test="${loginUser.id == comment.userId}">
 							<form:form modelAttribute="deleteCommentForm"
 								action="deleteComment">
 								<form:hidden path="id" value="${comment.id}" />
-								<input type="submit" value="削除する" onClick="return showMessage('削除');"  />
+								<input type="submit" value="削除する"
+									onClick="return showMessage('削除');" />
 							</form:form>
 						</c:if>
-					</c:if>
-				</c:forEach>
-
-				<form:form modelAttribute="commentForm" action="comment">
-					<form:hidden path="messageId" value="${message.id}" />
-					<form:textarea path="text" />
-					<input type="submit" value="コメントする" />
-				</form:form>
+					</div>
+				</c:if>
 			</c:forEach>
-		</div>
+
+			<form:form modelAttribute="commentForm" action="comment">
+				<form:hidden path="messageId" value="${message.id}" />
+				<form:textarea path="text" />
+				<input type="submit" value="コメントする" />
+			</form:form>
+		</c:forEach>
 	</div>
 </body>
 </html>
