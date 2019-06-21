@@ -27,24 +27,22 @@
 		<h2 class="ui header">新規投稿画面</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="postForm" class="ui form">
-				<div class="two wide field">
-					<form:label path="subject" class="field">件名</form:label>
-				</div>
-				<div class="five wide field">
-					<form:input path="subject" class="field" />
-					<form:errors path="subject" />
+				<form:errors path="*" />
+				<div class="field">
+					<form:label path="subject">件名</form:label>
+					<form:input path="subject" placeholder="subject" />
 				</div>
 				<div class="field">
 					<form:label path="text">本文</form:label>
-					<form:textarea path="text" />
-					<form:errors path="text" />
+					<form:textarea path="text" placeholder="text" />
 				</div>
 				<div class="field">
 					<form:label path="category">カテゴリ</form:label>
-					<form:input path="category" />
-					<form:errors path="category" />
+					<form:input path="category" placeholder="category" />
 				</div>
-				<input type="submit" value="投稿する" />
+				<button type="submit" class="ui primary labeled icon button">
+					<i class="envelope icon"></i> 投稿
+				</button>
 			</form:form>
 		</div>
 	</div>

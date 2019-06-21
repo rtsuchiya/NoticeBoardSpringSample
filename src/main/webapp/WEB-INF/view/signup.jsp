@@ -6,36 +6,64 @@
 <head>
 <meta charset="utf-8">
 <title>ユーザー新規登録画面</title>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<style>
+.main.container {
+	padding-top: 7em;
+}
+</style>
 </head>
 <body>
-	<form:form modelAttribute="signupForm">
-		ログインID<form:input path="loginId" />
-		<form:errors path="loginId" />
-		<br />
-		パスワード<form:password path="password" />
-		<form:errors path="password" />
-		<br />
-		パスワード(確認)<form:password path="confirmPassword" />
-		<form:errors path="confirmPassword" />
-		<br />
-		アカウント名<form:input path="accountName" />
-		<form:errors path="accountName" />
-		<br />
-		支店
-		<form:select path="branchId">
-			<form:options items="${branchList}" itemLabel="name" itemValue="id" />
-		</form:select>
-		<form:errors path="branchId" />
-		<br />
-		役職
-		<form:select path="positionId">
-			<form:options items="${positionList}" itemLabel="name" itemValue="id" />
-		</form:select>
-		<br />
-		<input value="登録する" type="submit" />
-	</form:form>
-	<a href="./management">ユーザー一覧へ戻る</a>
+	<div class="ui fixed inverted menu">
+		<div class="ui container">
+			<p class="header item">掲示板サンプル</p>
+			<a href="./management" class="item">ユーザー一覧</a> <a href="./logout"
+				class="item">ログアウト</a>
+		</div>
+	</div>
+	<div class="ui main text container">
+		<h2 class="ui header">ユーザー新規登録画面</h2>
+		<div class="ui segment">
+			<form:form modelAttribute="signupForm" class="ui form">
+				<form:errors path="*" />
+				<div class="field">
+					<form:label path="loginId">ログインID</form:label>
+					<form:input path="loginId" />
+				</div>
+				<div class="field">
+					<form:label path="password">パスワード</form:label>
+					<form:password path="password" />
+				</div>
+				<div class="field">
+					<form:label path="confirmPassword">パスワード(確認)</form:label>
+					<form:password path="confirmPassword" />
+				</div>
+				<div class="field">
+					<form:label path="accountName">アカウント名</form:label>
+					<form:input path="accountName" />
+				</div>
+				<div class="field">
+					<form:label path="branchId">支店</form:label>
+					<form:select path="branchId">
+						<form:options items="${branchList}" itemLabel="name"
+							itemValue="id" />
+					</form:select>
+				</div>
+				<div class="field">
+					<form:label path="positionId">役職</form:label>
+					<form:select path="positionId">
+						<form:options items="${positionList}" itemLabel="name"
+							itemValue="id" />
+					</form:select>
+				</div>
+				<button type="submit" class="ui primary labeled icon button">
+					<i class="user plus icon"></i> 登録
+				</button>
+			</form:form>
+		</div>
+	</div>
 </body>
 </html>

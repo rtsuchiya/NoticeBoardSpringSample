@@ -37,49 +37,50 @@
 	<div class="ui main text container">
 		<div class="ui segment">
 			<form:form modelAttribute="searchForm" method="get" class="ui form">
-				<div class="two fields">
-					<div class="field">
-						<input type="date" name="startDate"
-							value="${searchForm.startDate}" />
-					</div>
-					<div class="field">
-						<input type="date" name="endDate" value="${searchForm.endDate}" />
-					</div>
+				<div class="ui left icon input">
+					<i class="calendar icon"></i> <input type="date" name="startDate"
+						value="${searchForm.startDate}" />
 				</div>
-				<div class="two fields">
-					<div class="field">
-						<form:input path="category" placeholder="category" />
-					</div>
-					<input type="submit" value="検索する" />
+				<div class="ui left icon input">
+					<i class="calendar icon"></i> <input type="date" name="endDate"
+						value="${searchForm.endDate}" />
 				</div>
+				<div class="field">
+					<form:input path="category" placeholder="category" />
+				</div>
+				<input type="submit" value="検索する" />
 			</form:form>
 		</div>
 
 		<c:forEach items="${messageList}" var="message">
-		件名<c:out value="${message.subject}" />
-			<br />
-		本文
+			<div class="ui message">
+				<div class="header">
+					<c:out value="${message.subject}" />
+				</div>
+				<p>
 <pre><c:out value="${message.text}" /></pre>
-			<br />
-		カテゴリ<c:out value="${message.category}" />
-			<br />
-		投稿者<c:out value="${message.userName}" />
-			<br />
-		投稿日時<fmt:formatDate value="${message.createdAt}"
-				pattern="yyyy年MM月dd日 HH時mm分ss秒" />
-			<br />
-			<c:if test="${loginUser.id == message.userId}">
-				<form:form modelAttribute="deleteMessageForm" action="deleteMessage">
-					<form:hidden path="id" value="${message.id}" />
-					<input type="submit" value="削除する"
-						onClick="return showMessage('削除');" />
-				</form:form>
-			</c:if>
-
+				</p>
+				<br /> カテゴリ
+				<c:out value="${message.category}" />
+				<br /> 投稿者
+				<c:out value="${message.userName}" />
+				<br /> 投稿日時
+				<fmt:formatDate value="${message.createdAt}"
+					pattern="yyyy年MM月dd日 HH時mm分ss秒" />
+				<br />
+				<c:if test="${loginUser.id == message.userId}">
+					<form:form modelAttribute="deleteMessageForm"
+						action="deleteMessage">
+						<form:hidden path="id" value="${message.id}" />
+						<input type="submit" value="削除する"
+							onClick="return showMessage('削除');" />
+					</form:form>
+				</c:if>
+			</div>
 			<c:forEach items="${commentList}" var="comment">
 				<c:if test="${message.id == comment.messageId}">
-				<div class="ui message">
-					コメント
+					<div class="ui message">
+						コメント
 <pre><c:out value="${comment.text}" /></pre>
 						投稿者
 						<c:out value="${comment.userName}" />
