@@ -17,6 +17,11 @@
 	padding-top: 7em;
 }
 </style>
+<script type="text/javascript">
+	function showMessage(message) {
+		return window.confirm("本当に" + message + "しますか？");
+	}
+</script>
 </head>
 <body>
 	<div class="ui fixed inverted menu">
@@ -53,9 +58,7 @@
 		件名<c:out value="${message.subject}" />
 				<br />
 		本文
-<pre>
-					<c:out value="${message.text}" />
-				</pre>
+<pre><c:out value="${message.text}" /></pre>
 				<br />
 		カテゴリ<c:out value="${message.category}" />
 				<br />
@@ -68,7 +71,7 @@
 					<form:form modelAttribute="deleteMessageForm"
 						action="deleteMessage">
 						<form:hidden path="id" value="${message.id}" />
-						<input type="submit" value="削除する" />
+						<input type="submit" value="削除する" onClick="return showMessage('削除');" />
 					</form:form>
 				</c:if>
 
@@ -76,9 +79,7 @@
 					<c:if test="${message.id == comment.messageId}">
 				コメント
 				<div class="ui message">
-							<pre>
-								<c:out value="${comment.text}" />
-							</pre>
+<pre><c:out value="${comment.text}" /></pre>
 							投稿者
 							<c:out value="${comment.userName}" />
 							<br /> 投稿日時
@@ -89,7 +90,7 @@
 							<form:form modelAttribute="deleteCommentForm"
 								action="deleteComment">
 								<form:hidden path="id" value="${comment.id}" />
-								<input type="submit" value="削除する" />
+								<input type="submit" value="削除する" onClick="return showMessage('削除');"  />
 							</form:form>
 						</c:if>
 					</c:if>

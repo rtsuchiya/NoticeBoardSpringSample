@@ -9,6 +9,11 @@
 <title>ユーザー一覧画面</title>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<script type="text/javascript">
+	function showMessage(message) {
+		return window.confirm("本当に" + message + "しますか？");
+	}
+</script>
 </head>
 <body>
 	<a href="./top">ホーム</a>
@@ -39,12 +44,12 @@
 							<c:if test="${user.isWorking == 1}">
 								<form:hidden path="id" value="${user.id}" />
 								<form:hidden path="isWorking" value="0" />
-								<input type="submit" value="停止" />
+								<input type="submit" value="停止" onClick="return showMessage('停止')" />
 							</c:if>
 							<c:if test="${user.isWorking == 0}">
 								<form:hidden path="id" value="${user.id}" />
 								<form:hidden path="isWorking" value="1" />
-								<input type="submit" value="復活" />
+								<input type="submit" value="復活" onClick="return showMessage('復活')" />
 							</c:if>
 						</form:form>
 					</c:if></td>

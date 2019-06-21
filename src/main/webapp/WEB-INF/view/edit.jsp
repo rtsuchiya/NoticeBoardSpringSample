@@ -7,8 +7,15 @@
 <head>
 <meta charset="utf-8">
 <title>新規投稿画面</title>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<script type="text/javascript">
+	function showMessage(message) {
+		return window.confirm("本当に" + message + "しますか？");
+	}
+</script>
 </head>
 <body>
 	<form:form modelAttribute="editForm">
@@ -43,7 +50,7 @@
 			<form:hidden path="branchId" value="${editUser.branchId}" />
 			<form:hidden path="positionId" value="${editUser.positionId}" />
 		</c:if>
-		<input type="submit" value="編集する" />
+		<input type="submit" value="編集する" onClick="return showMessage('編集')" />
 	</form:form>
 	<a href="./management">ユーザー一覧へ戻る</a>
 </body>
