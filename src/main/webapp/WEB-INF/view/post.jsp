@@ -10,33 +10,43 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<style>
+.main.container {
+	padding-top: 7em;
+}
+</style>
 </head>
 <body>
-	<div class="ui container">
-		<form:form modelAttribute="postForm" class="ui form">
-			<h2 class="ui dividing header">新規投稿画面</h2>
-			<div class="fields">
+	<div class="ui fixed inverted menu">
+		<div class="ui container">
+			<p class="header item">掲示板サンプル</p>
+			<a href="./top" class="item">ホーム</a> <a href="./logout" class="item">ログアウト</a>
+		</div>
+	</div>
+	<div class="ui main text container">
+		<h2 class="ui header">新規投稿画面</h2>
+		<div class="ui segment">
+			<form:form modelAttribute="postForm" class="ui form">
 				<div class="two wide field">
-					<h3 class="field">件名</h3>
+					<form:label path="subject" class="field">件名</form:label>
 				</div>
 				<div class="five wide field">
 					<form:input path="subject" class="field" />
 					<form:errors path="subject" />
 				</div>
 				<div class="field">
-					<label id="text">本文</label>
+					<form:label path="text">本文</form:label>
 					<form:textarea path="text" />
 					<form:errors path="text" />
 				</div>
 				<div class="field">
-					<label id="category">カテゴリ</label>
+					<form:label path="category">カテゴリ</form:label>
 					<form:input path="category" />
 					<form:errors path="category" />
 				</div>
 				<input type="submit" value="投稿する" />
-			</div>
-		</form:form>
-		<a href="./top">ホームへ戻る</a>
+			</form:form>
+		</div>
 	</div>
 </body>
 </html>
