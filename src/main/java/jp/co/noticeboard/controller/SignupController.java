@@ -41,7 +41,7 @@ public class SignupController {
 
 		signupService.registUser(userDtoFactory.create(signupForm));
 
-		return "redirect:top";
+		return "redirect:management";
 	}
 
 	@ModelAttribute("branchList")
