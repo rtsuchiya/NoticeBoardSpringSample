@@ -84,8 +84,10 @@
 						<form:form modelAttribute="deleteMessageForm"
 							action="deleteMessage">
 							<form:hidden path="id" value="${message.id}" />
-							<input type="submit" value="削除する"
-								onClick="return showMessage('削除');" />
+							<button type="submit" class="circular ui icon button"
+								onClick="return showMessage('削除');">
+								<i class="trash icon"></i>
+							</button>
 						</form:form>
 					</c:if>
 				</div>
@@ -120,11 +122,14 @@
 						</c:if>
 					</c:forEach>
 				</div>
-
-				<form:form modelAttribute="commentForm" action="comment">
+				<form:form modelAttribute="commentForm" action="comment" class="ui form">
 					<form:hidden path="messageId" value="${message.id}" />
-					<form:textarea path="text" />
-					<input type="submit" value="コメントする" />
+					<div class="field">
+						<form:textarea path="text" />
+					</div>
+					<button type="submit" class="circular ui icon button">
+						<i class="comment icon"></i>
+					</button>
 				</form:form>
 			</div>
 		</c:forEach>
