@@ -28,9 +28,7 @@
 		<h2 class="ui header">ログイン画面</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="loginForm" class="ui form">
-				<div class="ui error message">
-					<form:errors path="*" />
-				</div>
+				<form:errors path="*" />
 				<div class="seven wide field">
 					<form:label path="loginId">ログインID</form:label>
 					<div class="ui left icon input">
