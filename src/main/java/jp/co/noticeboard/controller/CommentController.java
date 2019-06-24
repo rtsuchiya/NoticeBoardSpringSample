@@ -28,7 +28,7 @@ public class CommentController {
 	@RequestMapping(value = "/comment", method = RequestMethod.POST)
 	public String comment(@ModelAttribute @Valid CommentForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "/top";
+			return "redirect:top";
 		}
 
 		// コメントを登録する
