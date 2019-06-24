@@ -36,6 +36,7 @@
 		<h2 class="ui header">ユーザー編集画面</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="editForm" class="ui form">
+				<form:errors path="*" />
 				<form:hidden path="id" value="${editUser.id}" />
 				<div class="seven wide field">
 					<form:label path="loginId">ログインID</form:label>

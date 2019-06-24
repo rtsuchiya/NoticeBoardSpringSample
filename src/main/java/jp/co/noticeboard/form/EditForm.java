@@ -1,6 +1,9 @@
 package jp.co.noticeboard.form;
 
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import jp.co.noticeboard.form.validator.BranchPositionCombination;
 import jp.co.noticeboard.form.validator.ConfirmPassword;
@@ -9,12 +12,15 @@ import jp.co.noticeboard.form.validator.ConfirmPassword;
 @BranchPositionCombination(branchId = "branchId", positionId = "positionId")
 public class EditForm {
 	private Integer id;
-	@Pattern(regexp = "[a-zA-Z0-9]{6,20}")
+	@NotEmpty
+	@Size(min = 6, max = 20)
+	@Pattern(regexp = "[a-zA-Z0-9]+")
 	private String loginId;
-	@Pattern(regexp = ".{6,20}")
+	@Pattern(regexp = "(|.{6,20})")
 	private String password;
 	private String confirmPassword;
-	@Pattern(regexp = ".{1,10}")
+	@NotEmpty
+	@Size(min = 1, max = 10)
 	private String accountName;
 	private Integer branchId;
 	private Integer positionId;
