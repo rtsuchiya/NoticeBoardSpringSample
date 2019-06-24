@@ -32,8 +32,18 @@ public class EditController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(@ModelAttribute ManagementForm managementForm, Model model) {
+		// パラメタ不正の場合
+		if (managementForm.getId() == null) {
+			// TODO エラーメッセージ
+			return "redirect:management";
+		}
+
 		// 編集対象のユーザー情報を取得する
 		UserDto editUser = editService.getEditUser(managementForm.getId());
+		if (editUser == null) {
+			// TODO エラーメッセージ
+			return "redirect:management";
+		}
 
 		// TODO 存在しないユーザーの場合
 
