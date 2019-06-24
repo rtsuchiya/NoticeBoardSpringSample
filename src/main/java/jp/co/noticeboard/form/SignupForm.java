@@ -13,7 +13,7 @@ import jp.co.noticeboard.form.validator.ConfirmPassword;
 public class SignupForm {
 	@NotEmpty
 	@Size(min = 6, max = 20)
-	@Pattern(regexp = "[a-zA-Z0-9]")
+	@Pattern(regexp = "[a-zA-Z0-9]+")
 	private String loginId;
 	@NotEmpty
 	@Size(min = 6, max = 20)

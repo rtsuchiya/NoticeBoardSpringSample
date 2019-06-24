@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import jp.co.noticeboard.dto.UserDto;
 import jp.co.noticeboard.dto.UserManagementDto;
@@ -30,6 +31,9 @@ public class UserDtoFactory {
 
 	/** create dto from fom */
 	public UserDto create(EditForm form) {
+		if (StringUtils.isEmpty(form.getPassword())) {
+			form.setPassword(null);
+		}
 		return new UserDto(
 				form.getId(),
 				form.getLoginId(),
