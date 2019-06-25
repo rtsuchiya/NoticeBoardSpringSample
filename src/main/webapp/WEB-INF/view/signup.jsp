@@ -26,7 +26,7 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
-			<a href="./management" class="item">ユーザー一覧</a> <a href="./logout"
+			<a href="./management" class="item">ユーザー管理</a> <a href="./logout"
 				class="item">ログアウト</a>
 		</div>
 	</div>

@@ -36,7 +36,7 @@
 			<p class="header item">掲示板サンプル</p>
 			<a href="./post" class="item">新規投稿</a>
 			<c:if test="${loginUser.positionId == 1}">
-				<a href="./management" class="item">ユーザー一覧</a>
+				<a href="./management" class="item">ユーザー管理</a>
 			</c:if>
 			<a href="./logout" class="item">ログアウト</a> <br />
 		</div>
@@ -63,16 +63,28 @@
 				<i class="search icon"></i>検索
 			</button>
 		</form:form>
+		<c:if test="${empty messageList}">
+			<div class="ui segment">表示できる投稿がありません</div>
+		</c:if>
 		<c:forEach items="${messageList}" var="message">
 			<div class="ui segment">
 				<div class="ui message">
 					<div class="header">
 						<c:out value="${message.subject}" />
 					</div>
-					<pre>
-						<c:out value="${message.text}" />
-					</pre>
-					<br /> カテゴリ
+<pre><c:out value="${message.text}" /></pre>
+					<c:if test="${loginUser.id == message.userId}">
+						<form:form modelAttribute="deleteMessageForm"
+							action="deleteMessage">
+							<form:hidden path="id" value="${message.id}" />
+							<button type="submit"
+								class="circular ui right floated icon button"
+								onClick="return showMessage('削除');">
+								<i class="trash icon"></i>
+							</button>
+						</form:form>
+					</c:if>
+					カテゴリ
 					<c:out value="${message.category}" />
 					<br /> 投稿者
 					<c:out value="${message.userName}" />
@@ -80,18 +92,8 @@
 					<fmt:formatDate value="${message.createdAt}"
 						pattern="yyyy年MM月dd日 HH時mm分ss秒" />
 					<br />
-					<c:if test="${loginUser.id == message.userId}">
-						<form:form modelAttribute="deleteMessageForm"
-							action="deleteMessage">
-							<form:hidden path="id" value="${message.id}" />
-							<button type="submit" class="circular ui icon button"
-								onClick="return showMessage('削除');">
-								<i class="trash icon"></i>
-							</button>
-						</form:form>
-					</c:if>
 				</div>
-				<div class="ui comments">
+				<div class="ui threaded comments">
 					<c:forEach items="${commentList}" var="comment">
 						<c:if test="${message.id == comment.messageId}">
 							<div class="comment">
@@ -102,27 +104,30 @@
 										<span class="date"> <fmt:formatDate
 												value="${comment.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 									</div>
-									<div class="text">
-<pre><c:out value="${comment.text}" /></pre>
-									</div>
 									<c:if test="${loginUser.id == comment.userId}">
 										<div class="actions">
 											<form:form modelAttribute="deleteCommentForm"
 												action="deleteComment">
 												<form:hidden path="id" value="${comment.id}" />
-												<button type="submit" class="circular ui icon button"
+												<button type="submit"
+													class="circular ui right floated icon button"
 													onClick="return showMessage('削除');">
 													<i class="trash icon"></i>
 												</button>
 											</form:form>
 										</div>
 									</c:if>
+									<div class="text">
+<pre><c:out value="${comment.text}" /></pre>
+									</div>
 								</div>
 							</div>
+							<div class="ui fitted divider"></div>
 						</c:if>
 					</c:forEach>
 				</div>
-				<form:form modelAttribute="commentForm" action="comment" class="ui form">
+				<form:form modelAttribute="commentForm" action="comment"
+					class="ui form">
 					<form:hidden path="messageId" value="${message.id}" />
 					<div class="field">
 						<form:textarea path="text" />
