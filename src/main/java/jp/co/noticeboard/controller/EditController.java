@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,21 +32,19 @@ public class EditController {
 	private UserDtoFactory userDtoFactory;
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String edit(@ModelAttribute ManagementForm managementForm, Model model) {
+	public String edit(@ModelAttribute ManagementForm managementForm, BindingResult result, Model model) {
 		// パラメタ不正の場合
 		if (managementForm.getId() == null || !managementForm.getId().matches("[0-9]+")) {
-			// TODO エラーメッセージ
 			return "redirect:management";
 		}
 
 		// 編集対象のユーザー情報を取得する
 		UserDto editUser = editService.getEditUser(managementForm.getIdAsInteger());
+
+		// 編集対象のユーザーが存在しない場合
 		if (editUser == null) {
-			// TODO エラーメッセージ
 			return "redirect:management";
 		}
-
-		// TODO 存在しないユーザーの場合
 
 		model.addAttribute("editForm", editFormFactory.create(editUser));
 		return "/edit";
@@ -56,8 +55,13 @@ public class EditController {
 		if (result.hasErrors()) {
 			return "/edit";
 		}
-		// TODO PK重複エラー
-		editService.update(userDtoFactory.create(editForm));
+
+		try {
+			editService.update(userDtoFactory.create(editForm));
+		} catch (DuplicateKeyException ex) {
+			result.rejectValue("loginId", "ログインIDが既に使用されています", "ログインIDが既に使用されています");
+			return "/edit";
+		}
 
 		return "redirect:management";
 	}

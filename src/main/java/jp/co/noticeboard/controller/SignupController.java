@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,9 +38,12 @@ public class SignupController {
 			return "/signup";
 		}
 
-		// TODO PK重複チェック
-
-		signupService.registUser(userDtoFactory.create(signupForm));
+		try {
+			signupService.registUser(userDtoFactory.create(signupForm));
+		} catch (DuplicateKeyException ex) {
+			result.rejectValue("loginId", "ログインIDが既に使用されています", "ログインIDが既に使用されています");
+			return "/signup";
+		}
 
 		return "redirect:management";
 	}
