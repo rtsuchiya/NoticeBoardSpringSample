@@ -16,6 +16,10 @@
 .main.container {
 	padding-top: 7em;
 }
+
+.ui.form .error.message {
+	display: block !important;
+}
 </style>
 </head>
 <body>
@@ -30,7 +34,7 @@
 		<h2 class="ui header">ユーザー新規登録画面</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="signupForm" class="ui form">
-				<form:errors path="*" />
+				<form:errors path="*" class="ui error message" />
 				<div class="seven wide field">
 					<form:label path="loginId">ログインID</form:label>
 					<form:input path="loginId" />
