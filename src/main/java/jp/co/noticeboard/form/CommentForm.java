@@ -1,9 +1,11 @@
 package jp.co.noticeboard.form;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class CommentForm {
 	@NotBlank
+	@Length(max = 1000)
 	private String text;
 	private Integer messageId;
 

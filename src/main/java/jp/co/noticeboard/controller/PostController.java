@@ -38,6 +38,7 @@ public class PostController {
 			return "/post";
 		}
 
+		// 投稿を登録する
 		postService.regist(messageDtoFactory.create(postForm, ((UserDto) session.getAttribute("loginUser")).getId()));
 
 		return "redirect:top";

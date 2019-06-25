@@ -35,7 +35,10 @@ public class LoginController {
 			return "/login";
 		}
 
+		// ユーザー検索
 		UserDto user = loginService.getUser(loginForm.getLoginId(), loginForm.getPassword());
+
+		// ユーザーが存在しない、または停止中ユーザーの場合
 		if (user == null || user.getIsWorking() != 1) {
 			result.rejectValue("loginId", "ログインに失敗しました", "ログインに失敗しました");
 			return "/login";
