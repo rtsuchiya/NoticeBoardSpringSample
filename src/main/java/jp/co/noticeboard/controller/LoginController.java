@@ -23,7 +23,7 @@ public class LoginController {
 	private HttpSession session;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(@ModelAttribute LoginForm loginForm, Model model) {
+	public String login(@ModelAttribute LoginForm loginForm, Model model, BindingResult result) {
 		model.addAttribute("loginForm", loginForm);
 		return "/login";
 	}
@@ -37,7 +37,7 @@ public class LoginController {
 
 		UserDto user = loginService.getUser(loginForm.getLoginId(), loginForm.getPassword());
 		if (user == null || user.getIsWorking() != 1) {
-			// TODO エラーメッセージ
+			result.rejectValue("loginId", "ログインに失敗しました", "ログインに失敗しました");
 			return "/login";
 		}
 
