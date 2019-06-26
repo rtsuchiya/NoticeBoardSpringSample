@@ -26,7 +26,7 @@
 </script>
 <style>
 .main.container {
-	padding-top: 7em;
+	padding-top: 4em;
 }
 </style>
 </head>
@@ -34,17 +34,23 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
+			<a href="./top" class="item">ホーム</a>
 			<a href="./post" class="item">新規投稿</a>
 			<c:if test="${loginUser.positionId == 1}">
 				<a href="./management" class="item">ユーザー管理</a>
 			</c:if>
-			<a href="./logout" class="item">ログアウト</a> <br />
+			<div class="right menu">
+				<a href="./logout" class="item"><i class="sign-out icon"></i>ログアウト</a>
+			</div>
 		</div>
 	</div>
 	<div class="ui main text container">
+		<h2 class="ui center aligned icon header">
+			<i class="circular twitter icon"></i>
+		</h2>
 		<div class="ui attached message">投稿検索</div>
 		<form:form modelAttribute="searchForm" method="get"
-			class="ui form attached fluid segment">
+			class="ui form attached segment">
 			<div class="three fields">
 				<div class="five wide field">
 					<label id="startDate">開始日</label> <input type="date"
@@ -64,7 +70,7 @@
 			</button>
 		</form:form>
 		<c:if test="${empty messageList}">
-			<div class="ui segment">表示できる投稿がありません</div>
+			<div class="ui raised segment">表示できる投稿がありません</div>
 		</c:if>
 		<c:forEach items="${messageList}" var="message">
 			<div class="ui segment">
@@ -72,7 +78,13 @@
 					<div class="header">
 						<c:out value="${message.subject}" />
 					</div>
-<pre><c:out value="${message.text}" /></pre>
+					<div class="ui sub header">
+						<fmt:formatDate value="${message.createdAt}"
+							pattern="yyyy年MM月dd日 HH時mm分ss秒" />
+					</div>
+					<pre>
+						<c:out value="${message.text}" />
+					</pre>
 					<c:if test="${loginUser.id == message.userId}">
 						<form:form modelAttribute="deleteMessageForm"
 							action="deleteMessage">
@@ -86,43 +98,41 @@
 					</c:if>
 					カテゴリ
 					<c:out value="${message.category}" />
-					<br /> 投稿者
+					投稿者
 					<c:out value="${message.userName}" />
-					<br /> 投稿日時
-					<fmt:formatDate value="${message.createdAt}"
-						pattern="yyyy年MM月dd日 HH時mm分ss秒" />
-					<br />
 				</div>
 				<div class="ui threaded comments">
 					<c:forEach items="${commentList}" var="comment">
 						<c:if test="${message.id == comment.messageId}">
-							<div class="comment">
-								<div class="content">
-									<span class="author"> <c:out value="${comment.userName}" />
-									</span>
-									<div class="metadata">
-										<span class="date"> <fmt:formatDate
-												value="${comment.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
-									</div>
-									<c:if test="${loginUser.id == comment.userId}">
-										<div class="actions">
-											<form:form modelAttribute="deleteCommentForm"
-												action="deleteComment">
-												<form:hidden path="id" value="${comment.id}" />
-												<button type="submit"
-													class="circular ui right floated icon button"
-													onClick="return showMessage('削除');">
-													<i class="trash icon"></i>
-												</button>
-											</form:form>
+							<div class="ui vertical segment">
+								<div class="comment">
+									<div class="content">
+										<span class="author"><c:out value="${comment.userName}" /></span>
+										<div class="metadata">
+											<span class="date"> <fmt:formatDate
+													value="${comment.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 										</div>
-									</c:if>
-									<div class="text">
-<pre><c:out value="${comment.text}" /></pre>
+										<c:if test="${loginUser.id == comment.userId}">
+											<div class="actions">
+												<form:form modelAttribute="deleteCommentForm"
+													action="deleteComment">
+													<form:hidden path="id" value="${comment.id}" />
+													<button type="submit"
+														class="circular ui right floated icon button"
+														onClick="return showMessage('削除');">
+														<i class="trash icon"></i>
+													</button>
+												</form:form>
+											</div>
+										</c:if>
+										<div class="text">
+											<pre>
+												<c:out value="${comment.text}" />
+											</pre>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="ui fitted divider"></div>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -130,10 +140,10 @@
 					class="ui form">
 					<form:hidden path="messageId" value="${message.id}" />
 					<div class="field">
-						<form:textarea path="text" />
+						<form:textarea path="text" rows="3" />
 					</div>
-					<button type="submit" class="circular ui icon button">
-						<i class="comment icon"></i>
+					<button type="submit" class="ui blue labeled submit icon button">
+						<i class="edit icon"></i>コメント
 					</button>
 				</form:form>
 			</div>

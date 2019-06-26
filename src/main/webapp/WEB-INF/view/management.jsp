@@ -29,11 +29,16 @@
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
 			<a href="./top" class="item">ホーム</a> <a href="./signup" class="item">ユーザー新規登録</a>
-			<a href="./logout" class="item">ログアウト</a> <br />
+			<div class="right menu">
+				<a href="./logout" class="item"><i class="sign-out icon"></i>ログアウト</a>
+			</div>
 		</div>
 	</div>
 	<div class="ui main container">
-		<h2 class="ui header">ユーザー管理画面</h2>
+		<h2 class="ui header">
+			<i class="users icon"></i>
+			<div class="content">ユーザー管理画面</div>
+		</h2>
 		<table class="ui compact fixed table">
 			<thead>
 				<tr>

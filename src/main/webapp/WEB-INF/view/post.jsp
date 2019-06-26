@@ -26,11 +26,17 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
-			<a href="./top" class="item">ホーム</a> <a href="./logout" class="item">ログアウト</a>
+			<a href="./top" class="item">ホーム</a>
+			<div class="right menu">
+				<a href="./logout" class="item"><i class="sign-out icon"></i>ログアウト</a>
+			</div>
 		</div>
 	</div>
 	<div class="ui main text container">
-		<h2 class="ui header">新規投稿画面</h2>
+		<h2 class="ui header">
+			<i class="edit outline icon"></i>
+			<div class="content">新規投稿画面</div>
+		</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="postForm" class="ui form">
 				<form:errors path="*" class="ui error message" />

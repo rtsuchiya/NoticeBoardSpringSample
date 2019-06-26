@@ -32,12 +32,18 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
-			<a href="./management" class="item">ユーザー管理</a> <a href="./logout"
-				class="item">ログアウト</a>
+			<a href="./top" class="item">ホーム</a>
+			<a href="./management" class="item">ユーザー管理</a>
+			<div class="right menu">
+				<a href="./logout" class="item"><i class="sign-out icon"></i>ログアウト</a>
+			</div>
 		</div>
 	</div>
 	<div class="ui main text container">
-		<h2 class="ui header">ユーザー編集画面</h2>
+		<h2 class="ui header">
+			<i class="setting icon"></i>
+			<div class="content">ユーザー編集画面</div>
+		</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="editForm" class="ui form">
 				<form:errors path="*" class="ui error message" />
@@ -79,9 +85,7 @@
 					<form:hidden path="positionId" value="${editUser.positionId}" />
 				</c:if>
 				<button type="submit" onClick="return showMessage('編集')"
-					class="ui primary labeled icon button">
-					<i class="user plus icon"></i>編集
-				</button>
+					class="ui primary button">編集</button>
 				<a href="./management" class="ui button">キャンセル</a>
 			</form:form>
 		</div>

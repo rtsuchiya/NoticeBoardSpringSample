@@ -29,7 +29,10 @@
 		</div>
 	</div>
 	<div class="ui main text container">
-		<h2 class="ui header">ログイン画面</h2>
+		<h2 class="ui header">
+			<i class="lock open icon"></i>
+			<div class="content">ログイン画面</div>
+		</h2>
 		<div class="ui segment">
 			<form:form modelAttribute="loginForm" class="ui form">
 				<form:errors path="*" class="ui error message" />
