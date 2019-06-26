@@ -52,9 +52,7 @@
 					<form:label path="category">カテゴリ</form:label>
 					<form:input path="category" />
 				</div>
-				<button type="submit" class="ui primary labeled icon button">
-					<i class="comment icon"></i> 投稿
-				</button>
+				<button type="submit" class="ui primary button">投稿</button>
 				<a href="./top" class="ui button">キャンセル</a>
 			</form:form>
 		</div>
