@@ -46,10 +46,12 @@ pre {
 			</div>
 		</div>
 	</div>
+
 	<div class="ui main text container">
 		<h2 class="ui center aligned icon header">
-			<i class="circular handshake icon"></i>
+			<i class="circular handshake icon"></i>サンプル掲示板
 		</h2>
+
 		<div class="ui attached message">投稿検索</div>
 		<form:form modelAttribute="searchForm" method="get"
 			class="ui form attached segment">
