@@ -28,14 +28,16 @@
 .main.container {
 	padding-top: 4em;
 }
+pre {
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;;
+}
 </style>
 </head>
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
-			<a href="./top" class="item">ホーム</a>
-			<a href="./post" class="item">新規投稿</a>
+			<a href="./top" class="item">ホーム</a> <a href="./post" class="item">新規投稿</a>
 			<c:if test="${loginUser.positionId == 1}">
 				<a href="./management" class="item">ユーザー管理</a>
 			</c:if>
@@ -46,7 +48,7 @@
 	</div>
 	<div class="ui main text container">
 		<h2 class="ui center aligned icon header">
-			<i class="circular twitter icon"></i>
+			<i class="circular handshake icon"></i>
 		</h2>
 		<div class="ui attached message">投稿検索</div>
 		<form:form modelAttribute="searchForm" method="get"
@@ -69,37 +71,45 @@
 				<i class="search icon"></i>検索
 			</button>
 		</form:form>
+
 		<c:if test="${empty messageList}">
-			<div class="ui raised segment">表示できる投稿がありません</div>
+			<div class="ui center aligned segment">表示できる投稿がありません</div>
 		</c:if>
 		<c:forEach items="${messageList}" var="message">
 			<div class="ui segment">
-				<div class="ui message">
-					<div class="header">
-						<c:out value="${message.subject}" />
+				<div class="ui fluid raised card">
+					<div class="content">
+						<div class="header">
+							<c:out value="${message.subject}" />
+						</div>
+						<div class="description">
+<pre><c:out value="${message.text}" /></pre>
+						</div>
+						<c:if test="${loginUser.id == message.userId}">
+							<form:form modelAttribute="deleteMessageForm"
+								action="deleteMessage">
+								<form:hidden path="id" value="${message.id}" />
+								<button type="submit"
+									class="circular ui right floated icon button"
+									onClick="return showMessage('削除');">
+									<i class="trash icon"></i>
+								</button>
+							</form:form>
+						</c:if>
 					</div>
-					<div class="ui sub header">
+					<div class="extra">
+						<i class="list alternate icon"></i>
+						<c:out value="${message.category}" />
+					</div>
+					<div class="extra">
+						<i class="user circle icon"></i>
+						<c:out value="${message.userName}" />
+					</div>
+					<div class="extra">
+						<i class="hourglass icon"></i>
 						<fmt:formatDate value="${message.createdAt}"
 							pattern="yyyy年MM月dd日 HH時mm分ss秒" />
 					</div>
-					<pre>
-						<c:out value="${message.text}" />
-					</pre>
-					<c:if test="${loginUser.id == message.userId}">
-						<form:form modelAttribute="deleteMessageForm"
-							action="deleteMessage">
-							<form:hidden path="id" value="${message.id}" />
-							<button type="submit"
-								class="circular ui right floated icon button"
-								onClick="return showMessage('削除');">
-								<i class="trash icon"></i>
-							</button>
-						</form:form>
-					</c:if>
-					カテゴリ
-					<c:out value="${message.category}" />
-					投稿者
-					<c:out value="${message.userName}" />
 				</div>
 				<div class="ui threaded comments">
 					<c:forEach items="${commentList}" var="comment">
@@ -126,9 +136,7 @@
 											</div>
 										</c:if>
 										<div class="text">
-											<pre>
-												<c:out value="${comment.text}" />
-											</pre>
+<pre><c:out value="${comment.text}" /></pre>
 										</div>
 									</div>
 								</div>
