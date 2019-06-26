@@ -2,6 +2,7 @@ package jp.co.noticeboard.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class EditController {
 	private EditFormFactory editFormFactory;
 	@Autowired
 	private UserDtoFactory userDtoFactory;
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(@ModelAttribute ManagementForm managementForm, BindingResult result, Model model) {
@@ -47,12 +50,16 @@ public class EditController {
 		}
 
 		model.addAttribute("editForm", editFormFactory.create(editUser));
+		model.addAttribute("isShowPulldown", isShowPulldown(managementForm.getIdAsInteger(),
+				((UserDto) session.getAttribute("loginUser")).getId()));
 		return "/edit";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute @Valid EditForm editForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("isShowPulldown", isShowPulldown(editForm.getId(),
+					((UserDto) session.getAttribute("loginUser")).getId()));
 			return "/edit";
 		}
 
@@ -60,6 +67,8 @@ public class EditController {
 			editService.update(userDtoFactory.create(editForm));
 		} catch (DuplicateKeyException ex) {
 			result.rejectValue("loginId", "ログインIDが既に使用されています", "ログインIDが既に使用されています");
+			model.addAttribute("isShowPulldown", isShowPulldown(editForm.getId(),
+					((UserDto) session.getAttribute("loginUser")).getId()));
 			return "/edit";
 		}
 
@@ -74,5 +83,9 @@ public class EditController {
 	@ModelAttribute("positionList")
 	public List<PositionDto> getPositionList() {
 		return editService.getPositionList();
+	}
+
+	private boolean isShowPulldown(Integer loginUserId, Integer editUserId) {
+		return loginUserId != editUserId;
 	}
 }

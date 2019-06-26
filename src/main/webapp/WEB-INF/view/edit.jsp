@@ -32,8 +32,8 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<p class="header item">掲示板サンプル</p>
-			<a href="./top" class="item">ホーム</a>
-			<a href="./management" class="item">ユーザー管理</a>
+			<a href="./top" class="item">ホーム</a> <a href="./management"
+				class="item">ユーザー管理</a>
 			<div class="right menu">
 				<a href="./logout" class="item"><i class="sign-out icon"></i>ログアウト</a>
 			</div>
@@ -64,7 +64,11 @@
 					<form:label path="accountName">アカウント名</form:label>
 					<form:input path="accountName" value="${editUser.accountName}" />
 				</div>
-				<c:if test="${loginUser.id != editUser.id}">
+				<c:if test="${!isShowPulldown}">
+					<form:hidden path="branchId" value="${editUser.branchId}" />
+					<form:hidden path="positionId" value="${editUser.positionId}" />
+				</c:if>
+				<c:if test="${isShowPulldown}">
 					<div class="three wide field">
 						<form:label path="branchId">支店</form:label>
 						<form:select path="branchId">
@@ -79,10 +83,6 @@
 								itemValue="id" />
 						</form:select>
 					</div>
-				</c:if>
-				<c:if test="${loginUser.id == editUser.id}">
-					<form:hidden path="branchId" value="${editUser.branchId}" />
-					<form:hidden path="positionId" value="${editUser.positionId}" />
 				</c:if>
 				<button type="submit" onClick="return showMessage('編集')"
 					class="ui primary button">編集</button>
