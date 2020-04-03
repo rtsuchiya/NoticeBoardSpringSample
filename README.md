@@ -7,6 +7,7 @@
 	- comments
 	- branches
 	- positions
+- ユーザーIDとパスワード：mvc-config.xmlを編集してください
 
 ## DDL
 ```
@@ -60,3 +61,19 @@ create table positions (
 	updated_at timestamp not null
 );
 ```
+
+```
+-- 部署作成
+insert into branches (name, created_at, updated_at) values ('本社', current_timestamp,  current_timestamp);
+insert into branches (name, created_at, updated_at) values ('A支社', current_timestamp,  current_timestamp);
+insert into branches (name, created_at, updated_at) values ('B支社', current_timestamp,  current_timestamp);
+insert into branches (name, created_at, updated_at) values ('C支社', current_timestamp,  current_timestamp);
+
+-- 役職作成
+insert into positions (name, created_at, updated_at) values ('総務人事部', current_timestamp,  current_timestamp);
+insert into positions (name, created_at, updated_at) values ('情報管理部', current_timestamp,  current_timestamp);
+insert into positions (name, created_at, updated_at) values ('営業部', current_timestamp,  current_timestamp);
+insert into positions (name, created_at, updated_at) values ('技術部', current_timestamp,  current_timestamp);
+
+-- 管理者
+insert into users (login_id, password, name, branch_id, position_id, is_working, created_at, updated_at) values ('adminuser', 'BhocDqIOa12QrOPA2HkwS1LHUe9T5izPFZ4fsh2VTC8=', 'adminuser', 1, 1, 1, current_timestamp, current_timestamp);
